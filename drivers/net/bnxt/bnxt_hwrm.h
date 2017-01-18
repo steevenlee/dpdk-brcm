@@ -52,10 +52,14 @@ int bnxt_hwrm_set_filter(struct bnxt *bp,
 			 struct bnxt_vnic_info *vnic,
 			 struct bnxt_filter_info *filter);
 
-int bnxt_hwrm_exec_fwd_resp(struct bnxt *bp, void *fwd_cmd);
+int bnxt_hwrm_exec_fwd_resp(struct bnxt *bp, uint16_t target_id,
+			    void *encaped, size_t ec_size);
+int bnxt_hwrm_reject_fwd_resp(struct bnxt *bp, uint16_t target_id,
+			      void *encaped, size_t ec_size);
 
-int bnxt_hwrm_func_driver_register(struct bnxt *bp, uint32_t flags,
-				   uint32_t *vf_req_fwd);
+int bnxt_hwrm_func_buf_rgtr(struct bnxt *bp);
+int bnxt_hwrm_func_buf_unrgtr(struct bnxt *bp);
+int bnxt_hwrm_func_driver_register(struct bnxt *bp);
 int bnxt_hwrm_func_qcaps(struct bnxt *bp);
 int bnxt_hwrm_func_reset(struct bnxt *bp);
 int bnxt_hwrm_func_driver_unregister(struct bnxt *bp, uint32_t flags);
@@ -86,6 +90,8 @@ int bnxt_hwrm_vnic_ctx_free(struct bnxt *bp, struct bnxt_vnic_info *vnic);
 int bnxt_hwrm_vnic_free(struct bnxt *bp, struct bnxt_vnic_info *vnic);
 int bnxt_hwrm_vnic_rss_cfg(struct bnxt *bp,
 			   struct bnxt_vnic_info *vnic);
+int bnxt_hwrm_vnic_stall(struct bnxt *bp, struct bnxt_vnic_info *vnic,
+			   uint8_t on);
 
 int bnxt_alloc_all_hwrm_stat_ctxs(struct bnxt *bp);
 int bnxt_clear_all_hwrm_stat_ctxs(struct bnxt *bp);
@@ -103,5 +109,6 @@ int bnxt_set_hwrm_link_config(struct bnxt *bp, bool link_up);
 int bnxt_hwrm_func_qcfg(struct bnxt *bp);
 int bnxt_hwrm_allocate_pf_only(struct bnxt *bp);
 int bnxt_hwrm_allocate_vfs(struct bnxt *bp, int num_vfs);
+int bnxt_hwrm_func_vf_stall(struct bnxt *bp, uint16_t vf, uint8_t on);
 
 #endif

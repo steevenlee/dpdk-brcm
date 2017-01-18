@@ -58,6 +58,7 @@ struct bnxt_pf_info {
 #define BNXT_FIRST_PF_FID	1
 #define BNXT_MAX_VFS(bp)	(bp->pf.max_vfs)
 #define BNXT_FIRST_VF_FID	128
+#define BNXT_MAX_VF_NUM		128
 #define BNXT_PF_RINGS_USED(bp)	bnxt_get_num_queues(bp)
 #define BNXT_PF_RINGS_AVAIL(bp)	(bp->pf.max_cp_rings - BNXT_PF_RINGS_USED(bp))
 
